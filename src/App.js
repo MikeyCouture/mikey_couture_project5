@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from "axios";
 import Qs from "qs";
+import DisplayTranslate from "./component/DisplayTranslate"
 // import firebase from "./firebase";
+
+// const dbRef = firebase.database().ref();
 
 
 // extened Component class to App
@@ -15,6 +18,15 @@ class App extends Component {
       submitedText: "",
       translated: ""
     }
+  }
+
+  componentDidMount() {
+    console.log("I mounted yo!");
+    // dbRef.on("value", (snapshot) => {
+    //   this.setState({
+    //     text: snapshot.val()
+    //   });
+    // });
   }
 
   // creating handleChange function
@@ -48,6 +60,7 @@ class App extends Component {
       const dothrakiTranslation = translateInfo.translated;
       console.log(translateInfo)
       console.log(dothrakiTranslation);
+
       this.setState({
         // text: "",
         translated: dothrakiTranslation,
@@ -66,11 +79,21 @@ class App extends Component {
           <input type="submit" value="Dothraki Me!" id="translated"/>
           {/* <input onClick={this.handleClick} type="submit" value={this.state.translated} id="translated" /> */}
         </form>
-        {this.state.submitedText ? <h2>{this.state.submitedText}</h2> : <h2>{""}</h2>}
-        {this.state.translated ? <h2>{this.state.translated}</h2> : <h2>{""}</h2>}
+        <DisplayTranslate submitedText={this.state.submitedText} translated={this.state.translated} />
       </div>
     );
   }
 }
 
 export default App;
+
+
+
+ // const newPhrase = {
+      //   text: this.state.text,
+      //   translated: dothrakiTranslation
+      // };
+
+      // console.log(newPhrase);
+
+      // dbRef.push(newPhrase);
