@@ -11,35 +11,11 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      text: ""
+      text: "",
+      submitedText: "",
+      translated: ""
     }
   }
-
-  // making my Axios API request call using proxy.Hackeryou
-
-  // componentDidMount() {
-  //   axios({
-  //     method: 'GET',
-  //     url: "http://proxy.hackeryou.com",
-  //     dataResponse: 'json',
-  //     paramsSerializer: function (params) {
-  //       return Qs.stringify(params, { arrayFormat: 'brackets' })
-  //     },
-  //     params: {
-  //       reqUrl: "https://api.funtranslations.com/translate/dothraki.json",
-  //       params: {
-  //         text: this.state.text
-  //       },
-  //       xmlToJSON: false,
-  //       useCache: true
-  //     }
-  //   }).then(res => {
-  //     console.log(res)
-  //     this.setState({
-  //       text: this.state.text
-  //     });
-  //   })
-  // };
 
   // creating handleChange function
   handleChange = (e) => {
@@ -61,15 +37,21 @@ class App extends Component {
       params: {
         reqUrl: "https://api.funtranslations.com/translate/dothraki.json",
         params: {
-          text: this.state.text
+          text: this.state.text,
+          // translated: this.state.translated
         },
         xmlToJSON: false,
         useCache: true
       }
     }).then(res => {
-      console.log(res)
+      const translateInfo = res.data.contents;
+      const dothrakiTranslation = translateInfo.translated;
+      console.log(translateInfo)
+      console.log(dothrakiTranslation);
       this.setState({
-        text: this.state.text
+        // text: "",
+        translated: dothrakiTranslation,
+        submitedText: this.state.text
       });
     })
   };
@@ -80,12 +62,12 @@ class App extends Component {
         <h1>Westeros Translation App: Dothraki Edition!</h1>
         <form onSubmit={this.handleSubmit} action="">
           <label htmlFor="text">Enter your phrase here: </label>
-          {/* Dear future Mikey - both Inputs will need a value */}
           <input onChange={this.handleChange} value={this.state.text} type="text" id="text" />
-          <input type="submit" value="Dothraki Me!"/>
+          <input type="submit" value="Dothraki Me!" id="translated"/>
+          {/* <input onClick={this.handleClick} type="submit" value={this.state.translated} id="translated" /> */}
         </form>
-        <h2>{}</h2>
-      
+        {this.state.submitedText ? <h2>{this.state.submitedText}</h2> : <h2>{""}</h2>}
+        {this.state.translated ? <h2>{this.state.translated}</h2> : <h2>{""}</h2>}
       </div>
     );
   }
