@@ -12,7 +12,7 @@ body {
   background-size: cover;
   height: 100vh;
   color: wheat;
-  text-shadow: 0px 0px 3px black;
+  text-shadow: 1px 1px black;
 }
 
 code {
@@ -20,6 +20,22 @@ code {
     monospace;
 }
 
+.westerosBanner{
+  text-shadow: 1px 1px black, 1.3px 1.3px wheat, 1.7px 1.7px black, 2px 2px wheat, 2.3px 2.3px black, 2.5px 2.5px wheat, 2.7px 2.7px black;
+  
+}
+
+h3{
+  font-style: italic;
+}
+
+.savedTranslationOff{
+  display: none;
+}
+
+.savedTranslationOn{
+  display: block;
+}
 
 
 
