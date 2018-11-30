@@ -4,9 +4,9 @@ import './App.css';
 import axios from "axios";
 import Qs from "qs";
 import DisplayTranslate from "./component/DisplayTranslate"
-// import firebase from "./firebase";
+import firebase from "./firebase";
 
-// const dbRef = firebase.database().ref();
+const dbRef = firebase.database().ref();
 
 
 // extened Component class to App
@@ -16,17 +16,18 @@ class App extends Component {
     this.state = {
       text: "",
       submitedText: "",
-      translated: ""
+      translated: "",
+      phrase: {}
     }
   }
 
   componentDidMount() {
     console.log("I mounted yo!");
-    // dbRef.on("value", (snapshot) => {
-    //   this.setState({
-    //     text: snapshot.val()
-    //   });
-    // });
+    dbRef.on("value", (snapshot) => {
+      this.setState({
+        phrase: snapshot.val()
+      });
+    });
   }
 
   // creating handleChange function
@@ -61,6 +62,16 @@ class App extends Component {
       console.log(translateInfo)
       console.log(dothrakiTranslation);
 
+      const newPhrase = {
+        text: this.state.text,
+        translated: dothrakiTranslation,
+      };
+
+      console.log(newPhrase);
+
+      dbRef.push(newPhrase);
+
+
       this.setState({
         // text: "",
         translated: dothrakiTranslation,
@@ -77,7 +88,6 @@ class App extends Component {
           <label htmlFor="text">Enter your phrase here: </label>
           <input onChange={this.handleChange} value={this.state.text} type="text" id="text" />
           <input type="submit" value="Dothraki Me!" id="translated"/>
-          {/* <input onClick={this.handleClick} type="submit" value={this.state.translated} id="translated" /> */}
         </form>
         <DisplayTranslate submitedText={this.state.submitedText} translated={this.state.translated} />
       </div>
