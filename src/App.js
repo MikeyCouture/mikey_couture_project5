@@ -92,11 +92,18 @@ class App extends Component {
 
   showPhrases = (e) => {
   // toggle showFirebase true or false
+  // try if else statement 
+
+  if (this.state.showFirebase) {
+    this.setState({
+      showFirebase: false
+    })
+  } else {
     this.setState({
       showFirebase: true
     })
   }
-
+  }
 
   render() {
     return (
@@ -109,9 +116,9 @@ class App extends Component {
             <input type="submit" value="Dothraki Me!" id="translated"/>
           </form>
           <DisplayTranslate submitedText={this.state.submitedText} translated={this.state.translated} />
-          {this.state.showFirebase ? <DisplayFirebase id="showFirebase" phrase={this.state.phrase} showFirebase={this.state.showFirebase} /> : null} 
         </div>
-        <button id="phrase" onClick={this.showPhrases}>Saved Dothraki Phrases</button>
+        <button onClick={this.showPhrases}>Saved Dothraki Phrases</button>
+        {this.state.showFirebase ? <DisplayFirebase id="showFirebase" phrase={this.state.phrase} showFirebase={this.state.showFirebase} /> : null} 
       </div>
     );
   }
