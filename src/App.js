@@ -51,7 +51,7 @@ class App extends Component {
     // API call
     axios({
       method: 'GET',
-      url: "http://proxy.hackeryou.com",
+      url: "https://proxy.hackeryou.com",
       dataResponse: 'json',
       paramsSerializer: function (params) {
         return Qs.stringify(params, { arrayFormat: 'brackets' })
@@ -115,10 +115,12 @@ class App extends Component {
             <input onChange={this.handleChange} value={this.state.text} type="text" id="text" />
             <input type="submit" value="Dothraki Me!" id="translated"/>
           </form>
-          <DisplayTranslate submitedText={this.state.submitedText} translated={this.state.translated} />
+            <DisplayTranslate submitedText={this.state.submitedText} translated={this.state.translated} />
         </div>
         <button onClick={this.showPhrases}>Saved Dothraki Phrases</button>
-        {this.state.showFirebase ? <DisplayFirebase id="showFirebase" phrase={this.state.phrase} showFirebase={this.state.showFirebase} /> : null} 
+        <div className="buttonContainer">
+          {this.state.showFirebase ? <DisplayFirebase id="showFirebase" phrase={this.state.phrase} showFirebase={this.state.showFirebase} /> : null}
+        </div>
       </div>
     );
   }
