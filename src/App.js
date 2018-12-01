@@ -117,7 +117,7 @@ class App extends Component {
           </form>
             <DisplayTranslate submitedText={this.state.submitedText} translated={this.state.translated} />
         </div>
-        <button onClick={this.showPhrases}>Saved Dothraki Phrases</button>
+        <button className="button" onClick={this.showPhrases}>Saved Dothraki Phrases</button>
         <div className="buttonContainer">
           {this.state.showFirebase ? <DisplayFirebase id="showFirebase" phrase={this.state.phrase} showFirebase={this.state.showFirebase} /> : null}
         </div>
