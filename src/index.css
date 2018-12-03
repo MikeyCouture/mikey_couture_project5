@@ -29,11 +29,6 @@ code {
   
 }
 
-.buttonContainer{
-  height: 40vh;
-  overflow: hidden;
-}
-
 form{
   display: flex;
   flex-direction: column;
@@ -93,6 +88,11 @@ h3{
 
 
 /* BUTTON STYLES */
+
+.buttonContainer{
+  height: 40vh;
+  overflow: hidden;
+}
 
 .button{
   color: #3e3e3e;
